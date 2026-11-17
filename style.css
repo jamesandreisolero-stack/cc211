@@ -370,3 +370,5 @@ dialog {
 }
 dialog::backdrop { background: #000a; }
 dialog h3 { margin: 0 0 8px; color: var(--gold); }
+
+#gridTitle { display: none; }
