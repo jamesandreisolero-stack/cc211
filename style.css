@@ -346,11 +346,16 @@ select {
 .social a { flex: 1; max-width: 100px; }
 .social svg { display: block; width: 100%; height: auto; }
 
-./* all five buttons stay in one straight row; text shrinks to fit the screen */
-.legal { display: flex; flex-wrap: nowrap; gap: 4px; }
+/* all five buttons fill one straight row */
+.legal {
+  display: grid;
+  grid-template-columns:
+    minmax(0, .8fr) minmax(0, .8fr) minmax(0, 1.2fr) minmax(0, 1.6fr) minmax(0, 1.8fr);
+  gap: 4px;
+  width: 100%;
+}
 .legal button {
-  flex: 1 1 auto;
-  min-width: 0;
+  width: 100%;
   padding: 10px 4px;
   background: var(--slate);
   color: var(--gold);
