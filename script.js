@@ -288,7 +288,7 @@ function renderStage() {
     stage.append(makePoster(current, 'wide'));
   }
 
-  $('#note').textContent = source ? '' : 'Preview only: add a video file for this title in movies.js to enable playback.';
+  
 }
 
 /* ---------- 6. NAVIGATION ---------- */
