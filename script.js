@@ -94,7 +94,7 @@ function setSelect(select, value) {
   if (select.sync) select.sync();
 }
 
-['#setQuality', '#setSize', '#quality'].forEach(id => enhanceSelect($(id)));
+['#setQuality', '#setSize'].forEach(id => enhanceSelect($(id)));
 
 /* ---------- 2. SETTINGS (saved in the visitor's browser) ---------- */
 const DEFAULT_SETTINGS = { rotate: true, quality: '720p', size: '100' };
@@ -240,12 +240,9 @@ $('#searchForm').onsubmit = e => { e.preventDefault(); view.query = $('#searchIn
 
 /* ---------- 5. DETAIL + PLAYER ---------- */
 let current = null;
-let rotation = 0;
-let quality = settings.quality;
 
 function selectTitle(movie, scroll = true) {
   current = movie;
-  rotation = 0;
 
   // details text
   const info = $('#info');
@@ -272,14 +269,14 @@ function selectTitle(movie, scroll = true) {
   if (scroll) $('#detail').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// shows the video if one exists for this quality, otherwise the poster
+// shows the video if one exists for the default quality (set in Settings), otherwise the poster
 function renderStage() {
   const stage = $('#stage');
   const oldVideo = stage.querySelector('video');
   const resumeAt = oldVideo ? oldVideo.currentTime : 0;
   stage.replaceChildren();
 
-  const source = current.video[parseInt(quality)];
+  const source = current.video[parseInt(settings.quality)];
   if (source) {
     const video = document.createElement('video');
     video.controls = true;
@@ -292,17 +289,7 @@ function renderStage() {
   }
 
   $('#note').textContent = source ? '' : 'Preview only: add a video file for this title in movies.js to enable playback.';
-  setSelect($('#quality'), quality);
-  applyRotation();
 }
-
-function applyRotation() {
-  const scale = rotation % 180 ? 0.5625 : 1;   // shrink sideways so it fits the box
-  $('#stage').style.transform = `rotate(${rotation}deg) scale(${scale})`;
-}
-
-$('#rotateBtn').onclick = () => { rotation = (rotation + 90) % 360; applyRotation(); };
-$('#quality').onchange = e => { quality = e.target.value; renderStage(); };
 
 /* ---------- 6. NAVIGATION ---------- */
 function scrollToBottom(e) {
