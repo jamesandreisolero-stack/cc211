@@ -1,4 +1,4 @@
-//* =========================================================
+/* =========================================================
    JS Movies - behavior (needs movies.js loaded first)
    Sections: 1 Setup | 2 Settings | 3 Posters + hero | 4 Browse
              5 Detail + player | 6 Navigation | 7 Footer | 8 Start
