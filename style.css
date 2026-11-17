@@ -346,13 +346,16 @@ select {
 .social a { flex: 1; max-width: 100px; }
 .social svg { display: block; width: 100%; height: auto; }
 
-.legal { display: flex; flex-wrap: wrap; gap: 8px; }
+./* all five buttons stay in one straight row; text shrinks to fit the screen */
+.legal { display: flex; flex-wrap: nowrap; gap: 4px; }
 .legal button {
-  flex: 1 1 30%;
-  padding: 10px 6px;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 10px 4px;
   background: var(--slate);
   color: var(--gold);
-  font-size: .8rem;
+  font-size: clamp(.58rem, 2.7vw, .8rem);
+  line-height: 1.15;
 }
 
 dialog {
